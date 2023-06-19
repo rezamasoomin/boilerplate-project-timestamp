@@ -32,14 +32,14 @@ app.get(["/api/:date", "/api"], function (req, res) {
     let newDate = req.params.date ? req.params.date : new Date();
     if (!!Number(newDate)) {
         let utc = new Date(Number(newDate) );
-        res.json({"unix": newDate, "utc": utc.toUTCString()}
+        res.json({"unix": Number(newDate), "utc": utc.toUTCString()}
         );
     } else {
         try {
             let date = new Date(newDate);
             if (isNaN(date)) throw  "Invalid Date";
             let unix = Math.floor(date.getTime())
-            res.json({"unix": unix, "utc": date.toUTCString()}
+            res.json({"unix": Number(unix), "utc": date.toUTCString()}
             );
         } catch (e) {
             console.log(e);
