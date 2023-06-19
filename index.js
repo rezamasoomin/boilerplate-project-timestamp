@@ -31,7 +31,7 @@ app.get("/api/hello", function (req, res) {
 app.get(["/api/:date", "/api"], function (req, res) {
     let newDate = req.params.date ? req.params.date : new Date();
     if (!!Number(newDate)) {
-        let utc = new Date(newDate);
+        let utc = new Date(Number(newDate) );
         res.json({"unix": newDate, "utc": utc.toUTCString()}
         );
     } else {
