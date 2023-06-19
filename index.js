@@ -28,7 +28,7 @@ app.get("/api/hello", function (req, res) {
 //{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
 
 // your first API endpoint...
-app.get(["/api/:date", "/api/*"], function (req, res) {
+app.get(["/api/:date", "/api"], function (req, res) {
     let newDate = req.params.date ? req.params.date : new Date();
     if (!!Number(newDate)) {
         let utc = new Date(newDate);
