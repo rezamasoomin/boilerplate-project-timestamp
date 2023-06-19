@@ -28,18 +28,18 @@ app.get("/api/hello", function (req, res) {
 //{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
 
 // your first API endpoint...
-app.get("/api/:date", function (req, res) {
+app.get(["/api/:date","/api/*"], function (req, res) {
     let newDate=req.params.date?req.params.date:new Date();
     if (!!Number(newDate)) {
         let utc = new Date(newDate * 1000);
-        res.json({"unix": newDate, "utc": utc.toString()}
+        res.json({"unix": newDate, "utc": utc.toUTCString()}
         );
     } else {
         try {
             let date = new Date(newDate);
             if (isNaN(date)) throw  "Invalid Date";
             let unix = Math.floor(date.getTime())
-            res.json({"unix": unix, "utc": date.toString()}
+            res.json({"unix": unix, "utc": date.toUTCString()}
             );
         } catch (e) {
             console.log(e);
